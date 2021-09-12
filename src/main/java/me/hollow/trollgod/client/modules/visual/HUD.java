@@ -105,7 +105,7 @@ extends Module {
         }
         ScaledResolution resolution = new ScaledResolution(this.mc);
         if ( this.renderWatermark.getValue ( ) ) {
-            this.drawString( this.customWatermark.getValue ( ) ? this.watermarkString.getValue() : "Coma \u00a77v2.0", 2.0f, this.offsetWatermark.getValue ( ) ? 10.0f : 2.0f, Colours.INSTANCE.getColor());
+            this.drawString( this.customWatermark.getValue ( ) ? this.watermarkString.getValue() : "Coma \u00A7fv2.0.1", 2.0f, this.offsetWatermark.getValue ( ) ? 10.0f : 2.0f, Colours.INSTANCE.getColor());
         }
         if ( this.armorHud.getValue ( ) ) {
             GlStateManager.enableTexture2D();
