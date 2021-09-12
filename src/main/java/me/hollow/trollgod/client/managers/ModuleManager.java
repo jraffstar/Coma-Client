@@ -61,6 +61,7 @@ public class ModuleManager {
         this.register(new Nametags());
         this.register(new SkyColour());
         this.register(new ViewmodelChanger());
+        this.register(new ShulkerPreview());
         this.register(new VoidESP());
         this.register(new NoRender());
         this.register(new Skeleton());
