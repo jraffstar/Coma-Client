@@ -1,2 +1,1 @@
-# Coma-Client
-Its a hack client 😎
+# SHE SAID SHE WAS TWELVE
