@@ -1,0 +1,8 @@
+FD: me/hollow/trollgod/api/mixin/mixins/entity/MixinEntityPlayerSP/mc me/hollow/trollgod/api/mixin/mixins/entity/MixinEntityPlayerSP/field_71159_c
+FD: me/hollow/trollgod/api/mixin/mixins/gui/MixinGuiNewChat/mc me/hollow/trollgod/api/mixin/mixins/gui/MixinGuiNewChat/field_146247_f
+FD: me/hollow/trollgod/api/mixin/mixins/network/MixinCPacketPlayer/onGround me/hollow/trollgod/api/mixin/mixins/network/MixinCPacketPlayer/field_149474_g
+FD: me/hollow/trollgod/api/mixin/mixins/render/MixinEntityRenderer/mc me/hollow/trollgod/api/mixin/mixins/render/MixinEntityRenderer/field_78531_r
+FD: me/hollow/trollgod/api/mixin/mixins/render/MixinRenderLivingBase/mainModel me/hollow/trollgod/api/mixin/mixins/render/MixinRenderLivingBase/field_77045_g
+MD: me/hollow/trollgod/api/mixin/mixins/network/MixinCPacketPlayer/writePacketData (Lnet/minecraft/network/PacketBuffer;)V me/hollow/trollgod/api/mixin/mixins/network/MixinCPacketPlayer/func_148840_b (Lnet/minecraft/network/PacketBuffer;)V
+MD: me/hollow/trollgod/api/mixin/mixins/render/MixinLayerBipedArmor/setModelVisible (Lnet/minecraft/client/model/ModelBiped;)V me/hollow/trollgod/api/mixin/mixins/render/MixinLayerBipedArmor/func_177194_a (Lnet/minecraft/client/model/ModelBiped;)V
+MD: me/hollow/trollgod/api/mixin/mixins/render/MixinLayerBipedArmor/setModelSlotVisible (Lnet/minecraft/client/model/ModelBiped;Lnet/minecraft/inventory/EntityEquipmentSlot;)V me/hollow/trollgod/api/mixin/mixins/render/MixinLayerBipedArmor/func_188359_a (Lnet/minecraft/client/model/ModelBiped;Lnet/minecraft/inventory/EntityEquipmentSlot;)V
