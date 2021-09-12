@@ -7,7 +7,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 
-@ModuleManifest(label="AutoTotem", category=Module.Category.PLAYER, color=-12538256)
+@ModuleManifest(label="AutoTotem", category=Module.Category.COMBAT, color=-12538256)
 public class AutoTotem
 extends Module {
     @Override

@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Objects;
 
-@ModuleManifest(label="SelfFill", category=Module.Category.COMBAT, color=-16764673)
+@ModuleManifest(label="Neet", category=Module.Category.COMBAT, color=-16764673)
 public class Burrow
 extends Module {
     private final Setting<Boolean> lessPackets = this.register( new Setting <> ( "Conserve Packets" , false ));
