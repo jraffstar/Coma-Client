@@ -9,7 +9,7 @@ import tcb.bces.listener.Subscribe;
 
 import java.util.Objects;
 
-@ModuleManifest(label="SpeedTest", category=Module.Category.MOVEMENT)
+@ModuleManifest(label="Bhop", category=Module.Category.MOVEMENT)
 public class SpeedTest
 extends Module {
     private final double ACCELERATION = 1.65;

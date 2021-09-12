@@ -5,7 +5,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class MessageUtil
 implements Minecraftable {
-    private static final String prefix = "[\u00A74Coma\u00A7a] \u00a7d";
+    private static final String prefix = "\u00A7a[\u00A74Coma\u00A7a] \u00a7d";
 
     public static void sendClientMessage(String string, boolean deleteOld) {
         if (MessageUtil.mc.player == null) {

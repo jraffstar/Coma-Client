@@ -60,7 +60,7 @@ public final class TrollGod {
         this.configManager.init();
         this.eventBus.bind();
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
-        Display.setTitle( "trollgod" );
+        Display.setTitle( "you in a coma bruv" );
     }
 
     public NotificationManager getNotificationManager() {

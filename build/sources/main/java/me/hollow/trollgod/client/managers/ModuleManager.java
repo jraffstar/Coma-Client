@@ -42,9 +42,7 @@ public class ModuleManager {
         this.register(new AntiPush());
         this.register(new ChatSuffix());
         this.register(new ReverseStep());
-        this.register(new Speed());
         this.register(new Step());
-        this.register(new Strafe());
         this.register(new LiquidTweaks());
         this.register(new SpeedTest());
         this.register(new BehindSpoof());

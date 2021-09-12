@@ -21,9 +21,9 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 
-version = "1.5.2"
+version = "2.1"
 group = "me.hollow"
-archivesBaseName = "trollgod"
+archivesBaseName = "Coma"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
