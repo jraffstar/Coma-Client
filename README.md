@@ -4,7 +4,6 @@ https://youtube.com/watch?v=9ywnLQywz74&feature=share
 **YOU SLAMMED YOUR PENIS IN THE CAR DOOR**
 
 
-div align="center">
   <br />
   <p>
     <a href="https://discord.gg/A45skAEhEe"><img src="https://cdn.discordapp.com/attachments/888840810949390369/888843081242255400/10122011020.jpg" width="273" alt="COMA DISCORD" /></a>
