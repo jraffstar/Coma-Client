@@ -19,7 +19,7 @@ extends Module {
             if (StringUtils.startsWith( packet.getMessage() , ClickGui.getInstance().prefix.getValue() ) || StringUtils.startsWith( packet.getMessage() , "/" )) {
                 return;
             }
-            packet.setMessage(((CPacketChatMessage)event.getPacket()).getMessage() + " | Konas");
+            packet.setMessage(((CPacketChatMessage)event.getPacket()).getMessage() + " | ᴷᵃᵐⁱ⁺²");
         }
     }
 }
