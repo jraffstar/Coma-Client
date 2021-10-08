@@ -1,5 +1,5 @@
 {
-  "package": "me.hollow.trollgod.api.mixin.mixins",
+  "package": "tech.jensen.coma.api.mixin.mixins",
   "refmap": "mixin.refmap.json",
   "required": true,
   "target": "@env(DEFAULT)",

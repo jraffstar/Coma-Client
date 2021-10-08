@@ -22,7 +22,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 
 version = "2.1"
-group = "me.hollow"
+group = "tech.jensen"
 archivesBaseName = "Coma"
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -34,7 +34,7 @@ minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = 'run'
     mappings = "stable_39"
-    coreMod = 'me.hollow.trollgod.api.mixin.Loader'
+    coreMod = 'tech.jensen.coma.api.mixin.Loader'
     makeObfSourceJar = false
 }
 
@@ -70,7 +70,7 @@ shadowJar {
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.trollgod.api.mixin.Loader',
+                "FMLCorePlugin": 'tech.jensen.coma.api.mixin.Loader',
                 "TweakOrder": 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'ForceLoadAsMod': 'true',
@@ -98,7 +98,7 @@ jar {
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.trollgod.api.mixin.Loader',
+                "FMLCorePlugin": 'tech.jensen.coma.api.mixin.Loader',
                 "TweakOrder": 0,
                 "MixinConfigs": 'mixins.trollgod.json',
         )
