@@ -1,11 +1,11 @@
 [
   {
-    "modid": "trollgod",
-    "name": "TrollGod",
+    "modid": "coma",
+    "name": "Coma",
     "description": "",
-    "version": "1.5.2",
+    "version": "2.1",
     "mcversion": "1.12.2",
-    "authorList": ["hollow, chardnol"],
+    "authorList": ["Jensen/Jraffstar"],
     "credits": ""
   }
 ]
