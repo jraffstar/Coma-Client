@@ -1,7 +1,7 @@
 package tech.jensen.coma.client.modules.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import tech.jensen.coma.Main;
+import tech.jensen.coma.Trollgod;
 import tech.jensen.coma.api.mixin.mixins.network.AccessorCPacketUseEntity;
 import tech.jensen.coma.api.property.Setting;
 import tech.jensen.coma.api.util.Timer;
