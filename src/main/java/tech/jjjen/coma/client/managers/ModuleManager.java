@@ -97,7 +97,7 @@ public class ModuleManager {
         register(new Fullbright());
 
         //EXPLOIT
-        register(new Burrow());
+        register(new Neet());
         register(new SpeedMine());
         register(new InstaMine());
 
