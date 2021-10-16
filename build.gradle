@@ -21,9 +21,9 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 
-version = "0.1"
-group = "me.hollow"
-archivesBaseName = "hiassi.su"
+version = "3.0"
+group = "tech.jjjen"
+archivesBaseName = "Coma"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -34,7 +34,7 @@ minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = 'run'
     mappings = "stable_39"
-    coreMod = 'me.hollow.sputnik.api.mixin.Loader'
+    coreMod = 'tech.jjjen.coma.api.mixin.Loader'
     makeObfSourceJar = true
 }
 
@@ -72,7 +72,7 @@ shadowJar {
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.sputnik.api.mixin.Loader',
+                "FMLCorePlugin": 'tech.jjjen.coma.api.mixin.Loader',
                 "TweakOrder": 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'ForceLoadAsMod': 'true',
@@ -104,7 +104,7 @@ jar {
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.sputnik.api.mixin.Loader',
+                "FMLCorePlugin": 'tech.jjjen.coma.api.mixin.Loader',
                 "TweakOrder": 0,
                 "MixinConfigs": 'mixins.sputnik.json',
         )

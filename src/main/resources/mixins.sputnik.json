@@ -1,5 +1,5 @@
 {
-  "package": "me.hollow.sputnik.api.mixin.mixins",
+  "package": "tech.jjjen.coma.api.mixin.mixins",
   "refmap": "mixin.refmap.json",
   "required": true,
   "target": "@env(DEFAULT)",

@@ -1,11 +1,11 @@
 [
   {
-    "modid": "hiassi.su",
-    "name": "hiassi.su",
+    "modid": "coma",
+    "name": "Coma",
     "description": "A 1.12.2 hack client for anarchy and crystalpvp servers",
-    "version": "0.3",
+    "version": "2.0",
     "mcversion": "${mcversion}",
-    "authorList": ["maywr"],
-    "credits": "cattyn, amfero, xulu devs, trollgod devs, many other peopl"
+    "authorList": ["Jensen"],
+    "credits": "me"
   }
 ]
