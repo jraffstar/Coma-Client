@@ -18,7 +18,7 @@ public interface IFilter {
 	 * to retrieve the listener object.
 	 * @param context {@link MethodContext}
 	 */
-    void init ( MethodContext context );
+	public void init(MethodContext context);
 
 	/**
 	 * This method filters the incoming {@link Event}.
@@ -30,5 +30,5 @@ public interface IFilter {
 	 * @param event {@link Event}
 	 * @return boolean
 	 */
-    boolean filter ( Event event );
+	public boolean filter(Event event);
 }

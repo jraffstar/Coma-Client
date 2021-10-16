@@ -1,9 +1,9 @@
 package tcb.bces.hook;
 
+import java.lang.reflect.Method;
+
 import tcb.bces.hook.Hook.HookBuilder;
 import tcb.bces.hook.Hook.HookInvokerException;
-
-import java.lang.reflect.Method;
 
 /**
  * This stub is used as a template to compile the hook invoker.

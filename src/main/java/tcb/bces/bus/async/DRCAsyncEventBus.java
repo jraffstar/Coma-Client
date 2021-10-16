@@ -1,13 +1,5 @@
 package tcb.bces.bus.async;
 
-import tcb.bces.bus.DRCEventBus;
-import tcb.bces.bus.DRCExpander;
-import tcb.bces.bus.IEventBus;
-import tcb.bces.bus.MethodContext;
-import tcb.bces.bus.async.feedback.IFeedbackHandler;
-import tcb.bces.event.Event;
-import tcb.bces.event.IEventCancellable;
-
 import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +7,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
+
+import tcb.bces.bus.DRCEventBus;
+import tcb.bces.bus.DRCExpander;
+import tcb.bces.bus.IEventBus;
+import tcb.bces.bus.MethodContext;
+import tcb.bces.bus.async.feedback.IFeedbackHandler;
+import tcb.bces.event.Event;
+import tcb.bces.event.IEventCancellable;
 
 /**
  * This event bus allows asynchronous event posting. It still has all the features of
@@ -30,11 +30,11 @@ import java.util.concurrent.LinkedBlockingDeque;
  *
  */
 public class DRCAsyncEventBus extends DRCEventBus {
-	protected final BlockingQueue<Event> eventQueue = new LinkedBlockingDeque <> ( );
-	protected final BlockingQueue<IEventCancellable> eventQueueCancellable = new LinkedBlockingDeque <> ( );
+	protected final BlockingQueue<Event> eventQueue = new LinkedBlockingDeque<Event>();
+	protected final BlockingQueue<IEventCancellable> eventQueueCancellable = new LinkedBlockingDeque<IEventCancellable>();
 	protected IFeedbackHandler feedbackHandler = null;
-	private final ArrayList<DispatcherThread> dispatchers = new ArrayList <> ( );
-	private final ArrayList<DispatcherThread> sleepers = new ArrayList <> ( );
+	private final ArrayList<DispatcherThread> dispatchers = new ArrayList<DispatcherThread>();
+	private final ArrayList<DispatcherThread> sleepers = new ArrayList<DispatcherThread>();
 	private final int cthreads;
 	private final boolean manualDispatcherManagement;
 	protected final Object eventLock = new Object();
@@ -144,7 +144,9 @@ public class DRCAsyncEventBus extends DRCEventBus {
 	 */
 	protected synchronized final void removeFromSleepers(DispatcherThread dispatcher) {
 		synchronized(this) {
-            this.sleepers.remove(dispatcher);
+			if(this.sleepers.contains(dispatcher)) {
+				this.sleepers.remove(dispatcher);
+			}
 		}
 	}
 

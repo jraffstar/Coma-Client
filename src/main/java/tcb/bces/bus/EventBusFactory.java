@@ -48,7 +48,7 @@ public class EventBusFactory {
 	 * @return
 	 */
 	public static WrappedEventBus createDRCEventBus() {
-		return new WrappedEventBus( new DRCExpander <> ( new DRCEventBus ( ) ));
+		return new WrappedEventBus(new DRCExpander<DRCEventBus>(new DRCEventBus()));
 	}
 
 	/**

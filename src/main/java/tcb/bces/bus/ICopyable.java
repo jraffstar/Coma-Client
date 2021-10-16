@@ -14,5 +14,5 @@ interface ICopyable {
 	 * the given bus.
 	 * @return {@link IEventBus}
 	 */
-    IEventBus copyBus ( );
+	public IEventBus copyBus();
 }

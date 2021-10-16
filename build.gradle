@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven {
             name = 'forge'
-            url = 'https://files.minecraftforge.net/maven'
+            url = 'http://files.minecraftforge.net/maven'
         }
         maven {
             name = 'SpongePowered'
@@ -21,9 +21,9 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 
-version = "1.5.2"
+version = "0.1"
 group = "me.hollow"
-archivesBaseName = "trollgod"
+archivesBaseName = "hiassi.su"
 
 sourceCompatibility = targetCompatibility = '1.8'
 compileJava {
@@ -34,8 +34,8 @@ minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = 'run'
     mappings = "stable_39"
-    coreMod = 'me.hollow.trollgod.api.mixin.Loader'
-    makeObfSourceJar = false
+    coreMod = 'me.hollow.sputnik.api.mixin.Loader'
+    makeObfSourceJar = true
 }
 
 repositories {
@@ -56,6 +56,7 @@ repositories {
 
 dependencies {
     compile("org.spongepowered:mixin:0.7.11-SNAPSHOT") { // do NOT update this to 8.0 or above, it breaks compatibility with future client
+        compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
         exclude module: 'launchwrapper'
         exclude module: 'guava'
         exclude module: 'gson'
@@ -66,25 +67,30 @@ dependencies {
 shadowJar {
     dependencies {
         include(dependency('org.spongepowered:mixin'))
+        include(dependency('club.minnced:java-discord-rpc:2.0.1'))
     }
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.trollgod.api.mixin.Loader',
+                "FMLCorePlugin": 'me.hollow.sputnik.api.mixin.Loader',
                 "TweakOrder": 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'ForceLoadAsMod': 'true',
-                "MixinConfigs": 'mixins.trollgod.json',
+                "MixinConfigs": 'mixins.sputnik.json',
         )
     }
     exclude 'dummyThing'
     exclude 'LICENSE.txt'
-    classifier = 'release'
+    classifier = 'build'
 }
 
 mixin {
     defaultObfuscationEnv searge
     add sourceSets.main, 'mixin.refmap.json'
+}
+
+dependencies {
+    compile("org.json:json:20180813")
 }
 
 reobf {
@@ -98,9 +104,9 @@ jar {
     manifest {
         attributes(
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                "FMLCorePlugin": 'me.hollow.trollgod.api.mixin.Loader',
+                "FMLCorePlugin": 'me.hollow.sputnik.api.mixin.Loader',
                 "TweakOrder": 0,
-                "MixinConfigs": 'mixins.trollgod.json',
+                "MixinConfigs": 'mixins.sputnik.json',
         )
     }
 }

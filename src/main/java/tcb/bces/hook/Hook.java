@@ -1,15 +1,24 @@
 package tcb.bces.hook;
 
+import java.lang.reflect.Method;
+import java.util.Iterator;
+import java.util.List;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.tree.*;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldInsnNode;
+import org.objectweb.asm.tree.InsnList;
+import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.IntInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.TypeInsnNode;
+
 import tcb.bces.BytecodeUtil;
 import tcb.bces.InstrumentationClassLoader;
-
-import java.lang.reflect.Method;
-import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * The Hook class is used to create hooks that can dynamically invoke methods
@@ -108,7 +117,7 @@ public final class Hook {
 					ClassNode classNode = new ClassNode();
 					classReader.accept(classNode, ClassReader.SKIP_FRAMES);
 					methodNodeLoop:
-						for(MethodNode methodNode : classNode.methods) {
+						for(MethodNode methodNode : (List<MethodNode>) classNode.methods) {
 							if(methodNode.name.equals(METHOD_NAME_INVOKE)) {
 								InsnList methodInstructionSet = methodNode.instructions;
 								Iterator<AbstractInsnNode> it = methodInstructionSet.iterator();
@@ -162,7 +171,7 @@ public final class Hook {
 										methodInstructionSet.insertBefore(implementationNode, new TypeInsnNode(Opcodes.CHECKCAST, BytecodeUtil.getClassType(methodParams[i])));
 									} else {
 										AbstractInsnNode[] converter = BytecodeUtil.getObject2PrimitiveConverter(type);
-										methodInstructionSet.insertBefore(implementationNode, Objects.requireNonNull ( converter )[0]);
+										methodInstructionSet.insertBefore(implementationNode, converter[0]);
 										methodInstructionSet.insertBefore(implementationNode, converter[1]);
 									}
 								}

@@ -1,13 +1,18 @@
 package tcb.bces.bus;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import tcb.bces.bus.compilation.CompilationNode;
 import tcb.bces.event.Event;
 import tcb.bces.listener.IListener;
 import tcb.bces.listener.SubscriptionException;
-
-import java.lang.reflect.Method;
-import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * This bus expander can expand any limited event bus that extends {@link DRCEventBus} 
@@ -18,14 +23,14 @@ import java.util.Map.Entry;
  *
  */
 public class DRCExpander<B extends DRCEventBus> implements IEventBus, ICompilableBus {
-	private final ArrayList<B> busCollection = new ArrayList <> ( );
-	private final HashMap<Class<? extends Event>, List<B>> busMap = new HashMap <> ( );
-	private final List<MethodContext> registeredMethodEntries = new ArrayList <> ( );
+	private final ArrayList<B> busCollection = new ArrayList<B>();
+	private final HashMap<Class<? extends Event>, List<B>> busMap = new HashMap<Class<? extends Event>, List<B>>();
+	private final List<MethodContext> registeredMethodEntries = new ArrayList<MethodContext>();
 	private DRCEventBus currentBus = null;
 	private final int maxMethodEntriesPerBus;
 	private boolean singleBus = true;
-	private final B busInstance;
-	private final Class<B> busType;
+	private B busInstance;
+	private Class<B> busType;
 
 	/**
 	 * Initializes a new {@link DRCExpander} with a maximum method context limit per bus of 50 method contexts (recommended).
@@ -142,7 +147,7 @@ public class DRCExpander<B extends DRCEventBus> implements IEventBus, ICompilabl
 				bus.register(me);
 				List<B> busList = this.busMap.get(me.getEventClass());
 				if(busList == null) {
-					busList = new ArrayList <> ( );
+					busList = new ArrayList<B>();
 					this.busMap.put(me.getEventClass(), busList);
 				}
 				if(!busList.contains(bus)) busList.add(bus);
@@ -177,7 +182,7 @@ public class DRCExpander<B extends DRCEventBus> implements IEventBus, ICompilabl
 	 * @return read-only bus list
 	 */
 	public final List<DRCEventBus> getBusList() {
-		return Collections.unmodifiableList(this.busCollection);
+		return Collections.<DRCEventBus>unmodifiableList(this.busCollection);
 	}
 
 	/**
@@ -185,25 +190,25 @@ public class DRCExpander<B extends DRCEventBus> implements IEventBus, ICompilabl
 	 * @return List<List<MethodEntry>>
 	 */
 	private final List<List<MethodContext>> getSortedMethodEntries() {
-		HashMap<Class<? extends Event>, List<MethodContext>> eventListenerMap = new HashMap <> ( );
+		HashMap<Class<? extends Event>, List<MethodContext>> eventListenerMap = new HashMap<Class<? extends Event>, List<MethodContext>>();
 		for(MethodContext me : this.registeredMethodEntries) {
 			List<MethodContext> mel = eventListenerMap.get(me.getEventClass());
 			if(mel == null) {
-				mel = new ArrayList <> ( );
+				mel = new ArrayList<MethodContext>();
 				eventListenerMap.put(me.getEventClass(), mel);
 			}
 			mel.add(me);
 		}
 		int index = 0;
 		Iterator<Entry<Class<? extends Event>, List<MethodContext>>> it = eventListenerMap.entrySet().iterator();
-		List<List<MethodContext>> methodEntryList = new ArrayList <> ( );
-		List<MethodContext> currentList = new ArrayList <> ( );
+		List<List<MethodContext>> methodEntryList = new ArrayList<List<MethodContext>>();
+		List<MethodContext> currentList = new ArrayList<MethodContext>();
 		while(it.hasNext()) {
 			List<MethodContext> mel = it.next().getValue();
 			for(MethodContext me : mel) {
 				if(index >= this.maxMethodEntriesPerBus) {
 					methodEntryList.add(currentList);
-					currentList = new ArrayList <> ( );
+					currentList = new ArrayList<MethodContext>();
 					this.singleBus = false;
 					index = 0;
 				}

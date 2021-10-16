@@ -16,5 +16,5 @@ public interface IFeedbackHandler {
 	 * an {@link DRCAsyncEventBus}.
 	 * @param event IEvent
 	 */
-    void handleFeedback ( Event event );
+	public void handleFeedback(Event event);
 }

@@ -1,12 +1,12 @@
 package tcb.bces.listener;
 
-import tcb.bces.bus.DRCEventBus;
-import tcb.bces.listener.filter.IFilter;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import tcb.bces.bus.DRCEventBus;
+import tcb.bces.listener.filter.IFilter;
 
 /**
  * When used inside a class that implements {@link IListener}, the annotated method will be registered when the listener is

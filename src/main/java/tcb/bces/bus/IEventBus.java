@@ -13,19 +13,19 @@ public interface IEventBus {
 	/**
 	 * Registers an {@link IListener} to this bus
 	 */
-    void register ( IListener listener );
+	public void register(IListener listener);
 	
 	/**
 	 * Unregisters an {@link IListener} from this bus.
 	 * Only unregisters the first occurrence of the specified listener.
 	 * @param listener {@link IListener} to unregister
 	 */
-    void unregister ( IListener listener );
+	public void unregister(IListener listener);
 	
 	/**
 	 * Posts an {@link Event} and returns the posted event.
 	 * @param event {@link Event} to dispatch
 	 * @return {@link Event} the posted event
 	 */
-    <T extends Event> T post ( T event );
+	public <T extends Event> T post(T event);
 }

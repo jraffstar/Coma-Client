@@ -19,18 +19,18 @@ import java.util.Map.Entry;
  *
  */
 public class MappedEventBus implements IEventBus {
-	private final Map<Class<? extends Event>, List<MethodContext>> eventListenerMap = new HashMap <> ( );
-	private final List<MethodContext> subclassListeners = new ArrayList <> ( );
+	private final Map<Class<? extends Event>, List<MethodContext>> eventListenerMap = new HashMap<Class<? extends Event>, List<MethodContext>>();
+	private final List<MethodContext> subclassListeners = new ArrayList<MethodContext>();
 
 	@Override
 	public void register(IListener listener) {
 		List<MethodContext> methodEntries = MethodContext.getMethodContexts(listener);
-		List<List<MethodContext>> modifiedLists = new ArrayList <> ( );
+		List<List<MethodContext>> modifiedLists = new ArrayList<List<MethodContext>>();
 		boolean subclassListenersModified = false;
 		for(MethodContext me : methodEntries) {
 			List<MethodContext> listeners = this.eventListenerMap.get(me.getEventClass());
 			if(listeners == null) {
-				listeners = new ArrayList <> ( );
+				listeners = new ArrayList<MethodContext>();
 				this.eventListenerMap.put(me.getEventClass(), listeners);
 			}
 			listeners.add(me);
@@ -65,14 +65,16 @@ public class MappedEventBus implements IEventBus {
 			modifiedLists.add(this.subclassListeners);
 		}
 		//Check for any registered subclasses of the event types and add listeners to that list
-		for (Entry < Class < ? extends Event >, List < MethodContext > > entry : this.eventListenerMap.entrySet ( )) {
-			Class < ? extends Event > eventClass = entry.getKey ( );
-			List < MethodContext > methodEntryList = entry.getValue ( );
-			for (MethodContext me : methodEntries) {
-				if ( me.getHandlerAnnotation ( ).acceptSubclasses ( ) && me.getEventClass ( ).isAssignableFrom ( eventClass ) && ! me.getEventClass ( ).equals ( eventClass ) ) {
-					methodEntryList.add ( me );
-					if ( ! modifiedLists.contains ( methodEntryList ) ) {
-						modifiedLists.add ( methodEntryList );
+		Iterator<Entry<Class<? extends Event>, List<MethodContext>>> entryIterator = this.eventListenerMap.entrySet().iterator();
+		while(entryIterator.hasNext()) {
+			Entry<Class<? extends Event>, List<MethodContext>> entry = entryIterator.next();
+			Class<? extends Event> eventClass = entry.getKey();
+			List<MethodContext> methodEntryList = entry.getValue();
+			for(MethodContext me : methodEntries) {
+				if(me.getHandlerAnnotation().acceptSubclasses() && me.getEventClass().isAssignableFrom(eventClass) && !me.getEventClass().equals(eventClass)) {
+					methodEntryList.add(me);
+					if(!modifiedLists.contains(methodEntryList)) {
+						modifiedLists.add(methodEntryList);
 					}
 				}
 			}

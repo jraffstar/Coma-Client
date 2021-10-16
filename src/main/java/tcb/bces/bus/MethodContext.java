@@ -1,17 +1,17 @@
 package tcb.bces.bus;
 
-import tcb.bces.event.Event;
-import tcb.bces.listener.IListener;
-import tcb.bces.listener.Subscribe;
-import tcb.bces.listener.SubscriptionException;
-import tcb.bces.listener.filter.IFilter;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+
+import tcb.bces.event.Event;
+import tcb.bces.listener.IListener;
+import tcb.bces.listener.Subscribe;
+import tcb.bces.listener.SubscriptionException;
+import tcb.bces.listener.filter.IFilter;
 
 /**
  * The {@link MethodContext} holds information about a registered listener
@@ -143,7 +143,7 @@ public final class MethodContext {
 			instance = ctor.newInstance();
 			if(!accessible) ctor.setAccessible(false);
 			this.setFilter(instance);
-			Method initMethod = filterClass.getDeclaredMethod(IFILTER_INIT, MethodContext.class );
+			Method initMethod = filterClass.getDeclaredMethod(IFILTER_INIT, new Class[]{MethodContext.class});
 			initMethod.invoke(instance, this);
 		} catch(Exception ex) {
 			throw new SubscriptionException("Failed to initialize filter: " + filterClass.getName(), ex);
@@ -159,7 +159,7 @@ public final class MethodContext {
 	 * @return {@link List} of all found valid method contexts
 	 */
 	public static final List<MethodContext> getMethodContexts(IListener listener) throws SubscriptionException {
-		List<MethodContext> entryList = new ArrayList <> ( );
+		List<MethodContext> entryList = new ArrayList<MethodContext>();
 		Method[] listenerMethods = listener.getClass().getDeclaredMethods();
 		for(Method method : listenerMethods) {
 			if(method.getParameterTypes().length != 1 || !Event.class.isAssignableFrom(method.getParameterTypes()[0])) continue;

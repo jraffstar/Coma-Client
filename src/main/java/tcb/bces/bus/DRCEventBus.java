@@ -107,22 +107,22 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	/**
 	 * Contains all registered listeners
 	 */
-	private final HashMap<Class<? extends Event>, List<InternalMethodContext>> registeredEntries = new HashMap <> ( );
+	private final HashMap<Class<? extends Event>, List<InternalMethodContext>> registeredEntries = new HashMap<Class<? extends Event>, List<InternalMethodContext>>();
 
 	/**
 	 * Contains all registered listeners that accept subclasses of events (those listeners are also added to {@link DRCEventBus#registeredEntries})
 	 */
-	private final List<InternalMethodContext> subclassListeners = new ArrayList <> ( );
+	private final List<InternalMethodContext> subclassListeners = new ArrayList<InternalMethodContext>();
 
 	/**
 	 * Index lookup map, used for creating the bytecode
 	 */
-	private final HashMap<IListener, Integer> indexLookup = new HashMap <> ( );
+	private final HashMap<IListener, Integer> indexLookup = new HashMap<IListener, Integer>();
 
 	/**
 	 * Filter index lookup map, used for creating the bytecode
 	 */
-	private final HashMap<InternalMethodContext, Integer> filterIndexLookup = new HashMap <> ( );
+	private final HashMap<InternalMethodContext, Integer> filterIndexLookup = new HashMap<InternalMethodContext, Integer>();
 
 	/**
 	 * Contains all registered listeners
@@ -194,10 +194,10 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 
 		//Add all method contexts
 		for(MethodContext context : methodList) {
-			Class<? extends Event> paramType = context.getEventClass();
+			Class<? extends Event> paramType = (Class<? extends Event>) context.getEventClass();
 			List<InternalMethodContext> lle = this.registeredEntries.get(paramType);
 			if(lle == null) {
-				lle = new ArrayList <> ( );
+				lle = new ArrayList<InternalMethodContext>();
 				this.registeredEntries.put(paramType, lle);
 			}
 			lle.add(new InternalMethodContext(context, context.getListener(), context.getMethod(), context.getHandlerAnnotation(), context.getFilter(), context.getEventClass()));
@@ -233,7 +233,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 * @throws IndexOutOfBoundsException
 	 */
 	public final void register(MethodContext context) throws IndexOutOfBoundsException {
-		List<MethodContext> contextList = new ArrayList <> ( );
+		List<MethodContext> contextList = new ArrayList<MethodContext>();
 		contextList.add(context);
 		this.register(contextList);
 	}
@@ -259,7 +259,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 * @return {@link List} read-only list of all registered method contexts
 	 */
 	public final List<MethodContext> getMethodEntries() {
-		List<MethodContext> result = new ArrayList <> ( );
+		List<MethodContext> result = new ArrayList<MethodContext>();
 		for(Entry<Class<? extends Event>, List<InternalMethodContext>> e : this.registeredEntries.entrySet()) {
 			for(InternalMethodContext lme : e.getValue()) {
 				result.add(lme.context);
@@ -368,7 +368,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 * @return {@link List} read-only list of all registered listeners
 	 */
 	public final List<IListener> getListeners() {
-		ArrayList<IListener> listeners = new ArrayList <> ( );
+		ArrayList<IListener> listeners = new ArrayList<IListener>();
 		for(Entry<Class<? extends Event>, List<InternalMethodContext>> e : this.registeredEntries.entrySet()) {
 			for(InternalMethodContext le : e.getValue()) {
 				listeners.add(le.instance);
@@ -383,8 +383,8 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	private final void updateArrays() {
 		this.indexLookup.clear();
 		this.filterIndexLookup.clear();
-		ArrayList<IListener> arrayListenerList = new ArrayList <> ( );
-		ArrayList<IFilter> arrayFilterList = new ArrayList <> ( );
+		ArrayList<IListener> arrayListenerList = new ArrayList<IListener>();
+		ArrayList<IFilter> arrayFilterList = new ArrayList<IFilter>();
 		for(Entry<Class<? extends Event>, List<InternalMethodContext>> e : this.registeredEntries.entrySet()) {
 			List<InternalMethodContext> listenerEntryList = e.getValue();
 			for(InternalMethodContext listenerEntry : listenerEntryList) {
@@ -406,7 +406,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 */
 	private final Dispatcher getCompiledDispatcher() {
 		if(this.dispatcherImplInstance == null)  {
-			this.dispatcherImplInstance = this.compileDispatcher();
+			this.dispatcherImplInstance = (Dispatcher)this.compileDispatcher();
 		}
 		return this.dispatcherImplInstance;
 	}
@@ -497,7 +497,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 					classReader.accept(classNode, ClassReader.SKIP_FRAMES);
 					CompilationNode mainNode = new CompilationNode(DRCEventBus.this.toString());
 					DRCEventBus.this.compilationNode.addChild(mainNode);
-					for(MethodNode methodNode : classNode.methods) {
+					for(MethodNode methodNode : (List<MethodNode>) classNode.methods) {
 						if(methodNode.name.equals(DISPATCHER_DISPATCH_EVENT_INTERNAL)) {
 							instrumentDispatcher(methodNode, true, mainNode);
 						}
@@ -523,7 +523,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 */
 	private final synchronized void instrumentDispatcher(MethodNode methodNode, boolean cancellable, CompilationNode mainNode) {
 		InsnList methodInstructionSet = methodNode.instructions;
-		ArrayList<AbstractInsnNode> instructionSet = new ArrayList <> ( );
+		ArrayList<AbstractInsnNode> instructionSet = new ArrayList<AbstractInsnNode>();
 		Iterator<AbstractInsnNode> it = methodInstructionSet.iterator();
 		AbstractInsnNode insn;
 		AbstractInsnNode implementationNode = null;
@@ -801,7 +801,7 @@ public class DRCEventBus implements IEventBus, ICopyable, ICompilableBus {
 	 */
 	@Override
 	public void bind() {
-		this.dispatcherImplInstance = this.compileDispatcher();
+		this.dispatcherImplInstance = (Dispatcher)this.compileDispatcher();
 	}
 
 	/**

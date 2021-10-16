@@ -50,7 +50,7 @@ public abstract class Context implements IContext {
 	 */
 	@SuppressWarnings("unchecked")
 	public final <T extends IContext> List<T> getContexts(Class<T> type) {
-		List<T> foundContexts = new ArrayList <> ( );
+		List<T> foundContexts = new ArrayList<T>();
 		Context currentContext = this;
 		while(currentContext != null) {
 			if(currentContext.getClass() == type) foundContexts.add((T) currentContext);

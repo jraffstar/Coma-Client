@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompilationNode {
-	private final String data;
-	private final List<CompilationNode> children = new ArrayList <> ( );
+	private String data;
+	private List<CompilationNode> children = new ArrayList<CompilationNode>();
 	
 	/**
 	 * Creates a new node

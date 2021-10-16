@@ -3,7 +3,6 @@ package tcb.bces;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
-import java.util.Objects;
 
 /**
  * Used to load and instrument classes.
@@ -86,7 +85,7 @@ public abstract class InstrumentationClassLoader<T> extends ClassLoader {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				int readBytes = 0;
 				byte[] buffer = new byte[1024];
-				while((readBytes = Objects.requireNonNull ( is ).read(buffer)) >= 0) {
+				while((readBytes = is.read(buffer)) >= 0) {
 					baos.write(buffer, 0, readBytes);
 				}
 				byte[] bytecode = baos.toByteArray();

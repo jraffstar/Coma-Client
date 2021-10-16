@@ -1,11 +1,17 @@
 package tcb.bces;
 
+import java.lang.reflect.Method;
+
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
-import org.objectweb.asm.tree.*;
-import tcb.bces.event.Event;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.IntInsnNode;
+import org.objectweb.asm.tree.LdcInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.TypeInsnNode;
 
-import java.lang.reflect.Method;
+import tcb.bces.event.Event;
 
 public class BytecodeUtil {
 	public static String getClassType(Class<?> clazz) {
