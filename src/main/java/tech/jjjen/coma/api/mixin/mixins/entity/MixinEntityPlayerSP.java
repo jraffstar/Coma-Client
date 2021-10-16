@@ -3,7 +3,7 @@ package tech.jjjen.coma.api.mixin.mixins.entity;
 import tech.jjjen.coma.Main;
 import tech.jjjen.coma.api.util.Timer;
 import tech.jjjen.coma.client.events.UpdateEvent;
-import tech.jjjen.coma.client.modules.exploit.Burrow;
+import tech.jjjen.coma.client.modules.exploit.Neet;
 import tech.jjjen.coma.client.modules.misc.AntiPush;
 import tech.jjjen.coma.client.modules.player.AntiVoid;
 import net.minecraft.client.Minecraft;
@@ -60,7 +60,7 @@ public abstract class MixinEntityPlayerSP {
 
     @Inject(method = "pushOutOfBlocks", at = @At("HEAD"), cancellable = true)
     public void push(double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
-       if (new BlockPos(mc.player.getPositionVector()).equals(Burrow.getInstance().startPos) || AntiPush.INSTANCE.isEnabled()) {
+       if (new BlockPos(mc.player.getPositionVector()).equals(Neet.getInstance().startPos) || AntiPush.INSTANCE.isEnabled()) {
             cir.cancel();
             cir.setReturnValue(false);
         }
